@@ -1,0 +1,9 @@
+# JShell is just a REPL
+##  write `jshell` to launch jshell
+## `/help intro` to print out simple introduction to jshell 
+## `/help` to show simple commands to use with `help` e.x. `/help `intro`
+ or `/list -all` or `/exit` or `/ex`
+## 
+
+
+

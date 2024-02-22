@@ -1,0 +1,50 @@
+# data types:
+we can not redeclare a variable for the second time in java, 
+we can change its value. but in JShell, the re-declaration is allowed
+In JShell we can use `/var` to list variables 
+## primitive data types:
+### whole number:
+   * byte, short, int, long
+   with wrapper classes (Byte, Short, Integer, Long)
+   we can get range programmatically
+   `int myMinIntValue = Integer.MIN_VALUE;`
+   `int myMAXIntValue = Integer.MAX_VALUE;`
+   Integer is a wrapper class for integer data types 
+   Java uses wrapper class for all primitive data types to 
+   provide more information  
+   * int: whole numbers with range of (min, max)
+### Real number (floating point or decimal):
+   * float, double 
+   wrapper classes (Float, Double)
+### Single character: char (wrapper cls Character) 
+### Boolean values: boolean (wrapper cls Boolean)
+
+overflow 
+int num = (Integer.MAX_VALUE + 1);
+-> -2147483648
+another overflow example:
+int num = (2147483647 + 1): 
+-> -2147483648
+
+underflow example:
+int num = (Integer.MIN_VALUE - 1);
+-> +2147483648
+
+in both cases the compiler will throw no error, even if it is wrong
+but if you tried to assign the value directly, the compiler will 
+raise an error 
+int myNum = 2147483648; -> throes an error "Integer number too large"
+
+to improve readability of large numerical variables put underscore 
+int myNum = 2_147_483_647;
+#########################
+# More primitive types:
+you can use l, L to denote a number is long to force
+java to change the default data types 
+long myLongValue = 100L;
+so if I wrote `myLongValue = 100;` without the L, java compiler will 
+know that the int 100 fit to the long variable and convert it to long
+Whenever you want to use Long use the L suffix, otherwise Java will treat is as Integer
+
+you can use `DataTypeWrapper.SIZE` to print size stored in memory in bits
+for example `Integer.SIZE;` will print out 32
