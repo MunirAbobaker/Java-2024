@@ -48,3 +48,98 @@ Whenever you want to use Long use the L suffix, otherwise Java will treat is as 
 
 you can use `DataTypeWrapper.SIZE` to print size stored in memory in bits
 for example `Integer.SIZE;` will print out 32
+
+----------------------------
+# casting 
+we can declare two variable in one line where type is only defined once:
+they have to be with the same types:
+`byte myByteMinValue = Byte.Min_VALUE, myByteMaxValue = Byte.MAX_VALUE;`
+
+you can not however do this for variables with different types like:
+"this is wrong": `short firstShort = 1, int firstInteger = 2;`
+you can use it but with semicolon instead of comma as separator
+"this is correct": `short firstShort = 1; int firstInteger = 2;`
+
+you can not however, use the type two times when you use comma as separator 
+, even if you have the same type
+"this is wrong": `byte myFirstByte = 1, byte mySecondByte= 2;`
+
+you can either use semicolon or delete the second byte and let the 
+comma as separator 
+
+# rules:
+int myTotal = (myMinIntValue / 2); //will work
+byte myNewByteValue = (myByteMinValue / 2); // will not work, why?
+the error is incompatible types: possibly lossy conversion from int to byte
+we must know that java compiler:
+## does not attempt to evaluate the value, in a variable, when it is used in 
+a calculation, so it does not know if the value fits, and throws an error
+Basically Java uses int as default for literal numbers and what is here between () is. 
+evaluated as int, but java does not know the expression fits into bytes
+## if your calculation uses literal values, Java can figure out the end result 
+at compile time, and whether it fits into the variable, and won't throw an error if does.
+
+so if we put it like this `byte myNewByteValue = (-128 / 2);`
+will return -64, since Java knows the returned value and can fit it 
+into byte
+
+java does not know the expression fits into bytes, if we know for sure
+that the number can fit, we can use casting:
+`byte myNewByteValue = (byte) (myMinByteValue / 2);`
+
+
+# Summary of casting: 
+`int myTotal = (myMinIntValue / 2);` // will work, since the compiler 
+assume that the value is int, and it will be assigned to an int 
+`short myNewShortValue = (myMinShortValue / 2);` // will NOT work
+as the results of the expression is int and the defined variable is short 
+we need to tell the compiler, that this expression fits into our variable
+by using casting:
+`short myNewShortValue = (short)(myMinShortValue / 2);`
+if we use literal in expression: 
+`short myNewShortValue = (-128 / 2);` // will work, because 
+the compiler can determine the result immediately, and knows that 
+the value can fit into a short
+--------------------------------------
+
+# challenges:
+byte myByteNumber = 10;
+short myShortNumber = 100;
+int myIntNumber = 1000;
+long myLongValue = 50_000L + 10L * (myByteNumber + myShortNumber + myIntNumber);
+no need to cast in case of long
+------------------
+# Floating point numbers aka. real numbers: 
+double (default for any decimal real number), because it is more precise.
+Use suffix (D or d) for double, and (F or f) for float
+as the default data type for real numbers is double 
+`10.5` is double by default, but if we want it as float we can use suffix 
+`10.5F` 
+
+`float myOtherFloatValue = 5.25;` // will trow an error 
+"incompatible types: possibly lossy conversion from double to float"
+as said, the default value is double, and you can not converse to float from double 
+so you either use casting or the suffix 
+`float myOtherFloatValue = 5.25F;`
+`float myOtherFloatValue = (float) 5.25;`
+
+basically java can not assign a more precise value to a less precise type 
+you can perform arithmetic operations on numbers, 
+remember to one of the number has to be a double or a float to get precise answer
+`5 / 3 = 1`
+`5d / 3 = 1.66666667`
+`5.00 / 3f;` will throw an error, since two different data types 
+5.00 is by default a double and the floating number 3 
+## double 
+- faster to processed
+- java Math library Math is created to process a double 
+- double is more precise and can handle a large chunk of numbers 
+## challenges:
+double numberOfPounds = 200d;
+double kilograms = 0.45359237d * numberOfPounds;
+
+for precise calculation we should use BigDecimal 
+
+## Char and boolean
+
+for chars we use '' single Quotes
