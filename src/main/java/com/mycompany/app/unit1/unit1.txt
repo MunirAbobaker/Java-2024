@@ -143,3 +143,49 @@ for precise calculation we should use BigDecimal
 ## Char and boolean
 
 for chars we use '' single Quotes
+char myChar = 'D';
+// use uni-code with backslash, this will also give D
+char myChar = '\u0044';
+weather you used the literal value 'D' or the unicode
+the number will be stored in the unicode representations
+char myChar = 68; // decimal representation will give out 'D'
+for boolean variables, using the prefix "is" as best practice
+
+now all primitive types were done 
+byte, short, long, float, double, char, boolean
+
+## String
+Immutable: can combine string and unicode 
+math. operations that combine string and other types like int
+will produce a new string. since string is immutable, such 
+operations will recreate a new string and do not modify the previous one
+which is not efficient. 
+StringBuilder is mutable, but does not share String features
+
+when you use + operator with char, the decimal values will be added
+which were stored previously in memory as bytes 
+char myFirstChar = 'A', mySecondChar = 'B';
+String result = myFirstByte + mySecondChar; // produce error 
+
+String result = myFirstByte + mySecondChar + ""; // add char first,
+// which will result in 132, then convert it to string 
+String result = "" + myFirstByte + mySecondChar; // "AB"
+convert to string then concatenate
+
+int result = 10;
+result -= 5.5; // 4
+but if I have 
+int result = 10;
+result -= 5.5; // throws an error "incompatible types: possibly lossy conversion from double to int"
+
+and: 
+int result = 10; result = result - (int) 5.5; // 5
+
+int result = 10; result = (int) (result -  5.5); // 4
+
+int result = 10; result = (int)result -  5.5; // error
+// because we only convert result, and we have the same problem
+// the result of result - 5.5 will produce double
+
+summary :
+x -= y -> x = (data type of x) (x - y)
